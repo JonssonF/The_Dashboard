@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //Function for the clock in headerr----------------------------
   function clockUpdate() {
     const now = new Date();
     const timeString = now.toLocaleTimeString();
