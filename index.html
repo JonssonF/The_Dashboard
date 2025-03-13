@@ -4,21 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <!-- Favicon -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google font  "Lato"-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="./CSS/styles.css" />
   </head>
   <body>
-    <header>
-      <div id="clock"><p>Clock</p></div>
-    </header>
-    <h2>Fredrik Jonsson Dashboard</h2>
-    <div id="boxes">
-      <section class="box">Box1</section>
-      <section class="box">Box2</section>
-      <section class="box">Box3</section>
+    <div id="page__container">
+      <header>
+        <!-- Clock DIV -->
+        <div id="clock"><p></p></div>
+      </header>
+      <main id="dashboard__container">
+        <!-- Dashboard title -->
+        <h1 id="title__edit" contenteditable="true">John Doe Dashboard</h1>
+        <!-- Box Section -->
+        <section id="box-container">
+          <div class="box" id="box1">Snabblänkar</div>
+          <div class="box" id="box2">Väder</div>
+          <div class="box" id="box3">Valfri API</div>
+          <div class="box" id="box4">
+            <p>Notes:</p>
+            <textarea id="notes" placeholder="Write notes..."></textarea>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <!-- Random background API button -->
+        <button id="random__background-button">
+          <span class="fas fa-sync-alt"></span> Slumpa ny bakgrund
+        </button>
+      </footer>
     </div>
     <script src="script.js"></script>
   </body>
-  <footer>
-    <button id="random">Slumpa ny bakgrund</button>
-    <p id="copy">&copy; <time datetime="2025">2025</time> Fredrik Jonsson</p>
-  </footer>
 </html>

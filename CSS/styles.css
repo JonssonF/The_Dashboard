@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+/*Since the whole page is wrapped inside the page container div header,
+main & footer is considered sections. with space evenly i get the elements top, middle, bottom*/
+#page__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background-color: inherit;
+  padding-top: 2rem;
+}
+
+header {
+  width: 35vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dad6d6cc;
+  color: #000000ad;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  opacity: 0.9;
+}
+
+/*-------------------Clock section*/
+#clock {
+  font-size: 1.5rem;
+}
+
+#clock .time {
+  margin-right: 10px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#clock .date {
+  margin-left: 10px;
+}
+
+/* Dashboard (Title and boxes) */
+#dashboard__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/*---------------------------- Titel */
+#title__edit {
+  color: #dad6d6cc;
+  font-size: 5vh;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  min-height: 3rem;
+  min-width: 30rem;
+  max-height: 4rem;
+  max-width: 90rem;
+  padding: 0.5rem;
+  line-height: 4rem;
+}
+
+#title__edit.empty::before {
+  content: "Please write a title...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.5;
+  padding: 0.5rem;
+  max-width: 90rem;
+}
+
+#title__edit:not(.empty)::before {
+  content: "";
+}
+
+/* ----------------------Box-container */
+#box-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 250px;
+  height: 350px;
+  background-color: #dad6d6cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+/*--------Individual box section*/
+
+#box4 {
+  display: flex;
+  flex-direction: column;
+}
+
+#box4 #notes {
+  width: 90%;
+  height: 80%;
+  padding: 1rem;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border: 1px solid #ccc;
+  resize: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#box4 #notes:focus {
+  outline: none;
+  border-color: #333;
+}
+
+/* ---------------------Footer*/
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+#random__background-button {
+  background-color: #dad6d6cc;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+#random__background-button .fa-sync-alt {
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+}
+
+#random__background-button:hover .fa-sync-alt {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
