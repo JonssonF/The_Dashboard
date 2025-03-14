@@ -21,16 +21,31 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(clockUpdate, 1000);
   clockUpdate();
 
+  //Function for the title----------------------------
+  /*Made a function to hold a placeholder when title is empty, and to handle rows when hitting enter.*/
+
   const titleElement = document.getElementById("title__edit");
-  /*Added so enter doesnt make new rows only accepts title*/
+
   titleElement.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
       titleElement.blur();
     }
   });
-  //Function for the title----------------------------
-  /*Made a function to hold a placeholder when title is empty, and to handle rows when hitting enter.*/
+  //Saves the title to local storage
+  function saveTitle() {
+    const title = titleElement.textContent.trim();
+    localStorage.setItem("dashboardTitle", title);
+  }
+
+  // Check if there is a saved title
+  function loadTitle() {
+    const savedTitle = localStorage.getItem("dashboardTitle");
+    if (savedTitle) {
+      titleElement.textContent = savedTitle;
+    }
+  }
+
   function checkTitle() {
     if (titleElement.textContent.trim() === "") {
       titleElement.classList.add("empty");
@@ -38,8 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
       titleElement.classList.remove("empty");
     }
   }
-  checkTitle();
-  titleElement.addEventListener("input", checkTitle);
+
+  titleElement.addEventListener("input", () => {
+    checkTitle();
+    saveTitle();
+  });
+
+  loadTitle();
+  /*---------------function to fetch random background from unsplash---------------*/
 
   const accessKey = "bUcIPNWneomXsMItMG8imXP-Ba1zPQ7SNX-thDBJPpg";
 
@@ -96,8 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const favicon = document.createElement("img");
       favicon.src = `https://www.google.com/s2/favicons?domain=${link.url}`;
       favicon.alt = "Favicon";
-      // favicon.style.width = 16;
-      // favicon.style.height = 16;
 
       const linkElement = document.createElement("a");
       linkElement.href = link.url;
@@ -112,15 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("delete__Button");
-      deleteButton.textContent = "X";
+
+      const icon = document.createElement("i");
+      icon.classList.add("fas", "fa-minus-circle");
+      icon.alt = "X"; // X as delete if icon fails.
+
+      deleteButton.appendChild(icon);
+
       deleteButton.addEventListener("click", () => {
         deleteLink(index);
       });
 
-      delete__ButtonContainer.appendChild(deleteButton);
+      linkContainer.appendChild(deleteButton);
 
       li.appendChild(linkContainer);
-      li.appendChild(delete__ButtonContainer);
 
       linkList.appendChild(li);
     });
@@ -172,4 +196,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   renderLinks();
+
+  /*-----------------Save Notes---------------------*/
+
+  const notesElement = document.getElementById("notes");
+
+  function saveNotes() {
+    const notesContent = notesElement.value.trim();
+    localStorage.setItem("userNotes", notesContent);
+  }
+
+  function loadNotes() {
+    const savedNotes = localStorage.getItem("userNotes");
+    if (savedNotes) {
+      notesElement.value = savedNotes;
+    }
+  }
+
+  notesElement.addEventListener("input", () => {
+    saveNotes();
+  });
+
+  loadNotes();
 });

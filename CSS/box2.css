@@ -1,0 +1,18 @@
+/*--------------BOX 2-----------*/
+#box2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  gap: 1rem;
+}
+#box2 #box2__Title {
+  font-size: 1.5rem;
+}
+
+#weather-info {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+}

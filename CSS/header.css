@@ -1,0 +1,30 @@
+header {
+  width: 35vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dad6d6cc;
+  color: #000000ad;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  opacity: 0.9;
+}
+
+/*-------------------Clock section*/
+#clock {
+  font-size: 1.5rem;
+}
+
+#clock .time {
+  margin-right: 10px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#clock .date {
+  margin-left: 10px;
+}

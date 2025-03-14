@@ -1,0 +1,13 @@
+/*--------------BOX 3-----------*/
+
+#box3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  gap: 1rem;
+}
+
+#box3 #box3__Title {
+  font-size: 1.5rem;
+}

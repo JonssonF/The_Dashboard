@@ -27,16 +27,20 @@
       </header>
       <main id="dashboard__container">
         <!-- Dashboard title -->
-        <h1 id="title__edit" contenteditable="true">John Doe Dashboard</h1>
+        <h1 id="title__edit" contenteditable="true" spellcheck="false">
+          John Doe Dashboard
+        </h1>
         <!-- Box Section -->
         <section id="box-container">
           <!-- Favourite links -->
           <div class="box" id="box1">
             <h3 id="box1__Title">Links:</h3>
             <ul id="links">
-              <!-- Link Content -->
+              <!-- "link-item" -->
             </ul>
-            <button id="link__Modal-Button">+ Add Link</button>
+            <button id="link__Modal-Button">
+              <i class="fa-solid fa-circle-plus"></i> Add Link
+            </button>
           </div>
           <!-- Link Modal -->
           <div id="link__Modal" class="modal">
@@ -61,7 +65,10 @@
             </div>
           </div>
           <!-- Weather -->
-          <div class="box" id="box2">Väder</div>
+          <div class="box" id="box2">
+            <h3 id="box2__Title">Weather:</h3>
+            <div id="weather-info">Loading weather..</div>
+          </div>
           <!-- API -->
           <div class="box" id="box3">Valfri API</div>
           <!-- Notebox -->
