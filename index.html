@@ -30,11 +30,43 @@
         <h1 id="title__edit" contenteditable="true">John Doe Dashboard</h1>
         <!-- Box Section -->
         <section id="box-container">
-          <div class="box" id="box1">Snabblänkar</div>
+          <!-- Favourite links -->
+          <div class="box" id="box1">
+            <h3 id="box1__Title">Links:</h3>
+            <ul id="links">
+              <!-- Link Content -->
+            </ul>
+            <button id="link__Modal-Button">+ Add Link</button>
+          </div>
+          <!-- Link Modal -->
+          <div id="link__Modal" class="modal">
+            <div class="modal__Content">
+              <span class="close">&times;</span>
+              <h2>Add new link</h2>
+              <form id="addLink">
+                <input
+                  type="url"
+                  id="linkURL"
+                  placeholder="https://example.com"
+                  required
+                />
+                <input
+                  type="text"
+                  id="linkTitle"
+                  placeholder="Title ex Google."
+                  required
+                />
+                <button type="submit">Add Link</button>
+              </form>
+            </div>
+          </div>
+          <!-- Weather -->
           <div class="box" id="box2">Väder</div>
+          <!-- API -->
           <div class="box" id="box3">Valfri API</div>
+          <!-- Notebox -->
           <div class="box" id="box4">
-            <p>Notes:</p>
+            <h3>Notes:</h3>
             <textarea id="notes" placeholder="Write notes..."></textarea>
           </div>
         </section>

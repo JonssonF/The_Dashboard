@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
       titleElement.blur();
     }
   });
-
+  //Function for the title----------------------------
+  /*Made a function to hold a placeholder when title is empty, and to handle rows when hitting enter.*/
   function checkTitle() {
     if (titleElement.textContent.trim() === "") {
       titleElement.classList.add("empty");
@@ -39,4 +40,136 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   checkTitle();
   titleElement.addEventListener("input", checkTitle);
+
+  const accessKey = "bUcIPNWneomXsMItMG8imXP-Ba1zPQ7SNX-thDBJPpg";
+
+  const button = document.getElementById("random__background-button");
+
+  button.addEventListener("click", () => {
+    fetchBackground();
+  });
+
+  async function fetchBackground() {
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${accessKey}`;
+
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const imageUrl = data.urls.full;
+        document.body.style.backgroundImage = `url(${imageUrl})`;
+      })
+      .catch((error) => {
+        console.error("Error: Could not fetch background image.", error);
+      });
+  }
+
+  //Code for the modal and favourite links----------------------------
+
+  const openModalButton = document.getElementById("link__Modal-Button");
+  const linkModal = document.getElementById("link__Modal");
+  const closeModalButton = document.querySelector(".close");
+  const addLinkForm = document.getElementById("addLink");
+  const linkURLInput = document.getElementById("linkURL");
+  const linkTitleInput = document.getElementById("linkTitle");
+  const linkList = document.getElementById("links");
+
+  let savedLinks = JSON.parse(localStorage.getItem("savedLinks")) || [];
+
+  function saveLinks() {
+    localStorage.setItem("savedLinks", JSON.stringify(savedLinks));
+  }
+
+  function renderLinks() {
+    linkList.innerHTML = "";
+
+    savedLinks.forEach((link, index) => {
+      const li = document.createElement("li");
+      li.style.marginBottom = "10px";
+
+      const linkContainer = document.createElement("div");
+      linkContainer.classList.add("link-item");
+      linkContainer.style.display = "flex";
+      linkContainer.style.alignItems = "center";
+      linkContainer.style.justifyContent = "space-between";
+      linkContainer.style.gap = "10px";
+
+      const favicon = document.createElement("img");
+      favicon.src = `https://www.google.com/s2/favicons?domain=${link.url}`;
+      favicon.alt = "Favicon";
+      // favicon.style.width = 16;
+      // favicon.style.height = 16;
+
+      const linkElement = document.createElement("a");
+      linkElement.href = link.url;
+      linkElement.textContent = link.title;
+      linkElement.target = "_blank";
+
+      linkContainer.appendChild(favicon);
+      linkContainer.appendChild(linkElement);
+
+      const delete__ButtonContainer = document.createElement("div");
+      delete__ButtonContainer.classList.add("delete__ButtonContainer");
+
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("delete__Button");
+      deleteButton.textContent = "X";
+      deleteButton.addEventListener("click", () => {
+        deleteLink(index);
+      });
+
+      delete__ButtonContainer.appendChild(deleteButton);
+
+      li.appendChild(linkContainer);
+      li.appendChild(delete__ButtonContainer);
+
+      linkList.appendChild(li);
+    });
+  }
+
+  openModalButton.addEventListener("click", () => {
+    linkModal.style.display = "flex";
+  });
+
+  closeModalButton.addEventListener("click", () => {
+    linkModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === linkModal) {
+      linkModal.style.display = "none";
+    }
+  });
+
+  addLinkForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const url = linkURLInput.value.trim();
+    const title = linkTitleInput.value.trim();
+
+    if (!url || !title) {
+      alert("Please fill out both fields.");
+      return;
+    }
+
+    const newLink = {
+      url,
+      title,
+    };
+
+    savedLinks.push(newLink);
+
+    saveLinks();
+    renderLinks();
+
+    addLinkForm.reset();
+    linkModal.style.display = "none";
+  });
+
+  function deleteLink(index) {
+    savedLinks.splice(index, 1);
+    saveLinks();
+    renderLinks();
+  }
+
+  renderLinks();
 });
