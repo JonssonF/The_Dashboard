@@ -1,4 +1,8 @@
+import { GetWeather } from "./JS/weather.js";
+
 document.addEventListener("DOMContentLoaded", function () {
+  GetWeather();
+
   //Function for the clock in headerr----------------------------
   function clockUpdate() {
     const now = new Date();
