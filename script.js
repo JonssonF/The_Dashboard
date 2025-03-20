@@ -1,9 +1,8 @@
 import { GetWeather } from "./JS/weather.js";
-import {} from "./JS/extraAPI.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   GetWeather(); // Runs the GetWeather function from weather.js
-
+  fetchLesson();
   //Function for the clock in headerr----------------------------
   function clockUpdate() {
     const now = new Date();
@@ -114,6 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const linkList = document.getElementById("links");
 
   let savedLinks = JSON.parse(localStorage.getItem("savedLinks")) || [];
+
+  // Modal messing might check this later.
+  window.onload = function () {
+    document.getElementById("link__Modal").style.display = "none";
+  };
 
   function saveLinks() {
     localStorage.setItem("savedLinks", JSON.stringify(savedLinks));
@@ -238,3 +242,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadNotes();
 });
+
+/*-----------------LIFE LESSONS API----------------*/
+
+const fetchLesson = async () => {
+  try {
+    const response = await fetch("https://api.adviceslip.com/advice");
+    const data = await response.json();
+    const lesson = data.slip.advice;
+
+    // Visa rådet på sidan
+    document.getElementById("lesson__Content").textContent = lesson;
+  } catch (error) {
+    console.error("Error fetching advice:", error);
+  }
+};
+window.onload = fetchLesson;
+
+document
+  .getElementById("lesson__Button")
+  .addEventListener("click", fetchLesson);
