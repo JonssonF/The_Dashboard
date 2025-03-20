@@ -10,8 +10,10 @@ footer {
 
 #random__background-button {
   background-color: #dad6d6cc;
+  color: #000000ad;
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 10px;
   -webkit-border-radius: 10px;

@@ -1,7 +1,8 @@
 import { GetWeather } from "./JS/weather.js";
+import {} from "./JS/extraAPI.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  GetWeather();
+  GetWeather(); // Runs the GetWeather function from weather.js
 
   //Function for the clock in headerr----------------------------
   function clockUpdate() {
@@ -64,15 +65,27 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   loadTitle();
-  /*---------------function to fetch random background from unsplash---------------*/
+  /*---------------function to fetch random background from unsplash or default first visit---------------*/
 
+  const defaultBackground = "./back.jpg";
   const accessKey = "bUcIPNWneomXsMItMG8imXP-Ba1zPQ7SNX-thDBJPpg";
-
   const button = document.getElementById("random__background-button");
 
   button.addEventListener("click", () => {
     fetchBackground();
   });
+
+  loadBackground();
+  //Loads the background from localstorage or sets to default first visit.
+  function loadBackground() {
+    const savedBackground = localStorage.getItem("dashboardBackground");
+
+    if (savedBackground) {
+      document.body.style.backgroundImage = `url(${savedBackground})`;
+    } else {
+      document.body.style.backgroundImage = `url(${defaultBackground})`;
+    }
+  }
 
   async function fetchBackground() {
     const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=${accessKey}`;
@@ -82,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         const imageUrl = data.urls.full;
         document.body.style.backgroundImage = `url(${imageUrl})`;
+
+        localStorage.setItem("dashboardBackground", imageUrl);
       })
       .catch((error) => {
         console.error("Error: Could not fetch background image.", error);
