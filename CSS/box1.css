@@ -140,6 +140,7 @@ input {
   height: 20%;
   width: 100%;
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
   align-items: center;
   -webkit-border-radius: 10px;
@@ -167,6 +168,9 @@ input {
 
 /* Deletebutton inside link box */
 .delete__Button {
+  position: fixed;
+  overflow: auto;
+  margin-left: 200px;
   margin-bottom: 20px;
   color: #888;
   border: none;
