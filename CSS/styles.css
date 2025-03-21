@@ -1,10 +1,10 @@
+@import "title.css";
 @import "header.css";
-@import "footer.css";
 @import "box1.css";
 @import "box2.css";
 @import "box3.css";
 @import "box4.css";
-@import "title.css";
+@import "footer.css";
 
 * {
   margin: 0;
@@ -27,7 +27,7 @@ html {
 }
 
 /*Since the whole page is wrapped inside the page container. Div, header,
-main & footer is considered sections. with space evenly i get 
+main & footer is considered sections. with space between i get 
 the elements top, middle, bottom*/
 
 #page__container {
