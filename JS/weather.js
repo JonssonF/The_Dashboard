@@ -7,7 +7,7 @@ export async function GetWeather() {
 
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Stockholm&days=4`
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Stockholm&days=3`
     );
 
     if (!response.ok) {
