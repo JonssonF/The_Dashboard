@@ -15,11 +15,10 @@ export async function GetWeather() {
 
     const lat = position.latitude;
     const lon = position.longitude;
-
     const detailedLocation = await getDetailedLocation(lat, lon);
 
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=3&aqi=yes&alerts=yes`
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=7&aqi=yes&alerts=yes`
     );
 
     if (!response.ok) {
@@ -28,10 +27,12 @@ export async function GetWeather() {
     const data = await response.json();
     console.log(data);
 
-    const locationName = detailedLocation || data.location.name;
+    const locationName = data.location.name;
+    //const locationName = detailedLocation || data.location.name;
+
     console.log(locationName);
     const forecast = data.forecast.forecastday;
-    let forecastHTML = `<h3>${locationName}</h3><ul>`;
+    let forecastHTML = `<h2>${locationName}</h2><ul>`;
 
     forecast.forEach((day) => {
       const date = new Date(day.date);

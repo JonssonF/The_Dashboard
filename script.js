@@ -2,7 +2,6 @@ import { GetWeather } from "./JS/weather.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   GetWeather(); // Runs the GetWeather function from weather.js
-  fetchLesson();
 
   //Function for the clock in headerr----------------------------
   function clockUpdate() {
@@ -178,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.addEventListener("click", (e) => {
-    if (e.target === linkModal) {
+    if (e.target === linkModal || e.target === closeModalButton) {
       linkModal.style.display = "none";
     }
   });
@@ -252,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error fetching advice:", error);
     }
   };
+  document
+    .getElementById("lesson__Button")
+    .addEventListener("click", fetchLesson);
 });
-document
-  .getElementById("lesson__Button")
-  .addEventListener("click", fetchLesson);

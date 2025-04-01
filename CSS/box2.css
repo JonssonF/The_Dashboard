@@ -19,12 +19,13 @@
   align-items: center;
   border-radius: 10px;
   padding: 1rem;
-  margin-top: 10px;
+  margin-top: 0px;
   text-align: center;
   border-color: 2px #333;
   font-size: 0.8rem;
   color: #555;
-  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
 }
 
 #weather-info ul {
@@ -32,7 +33,7 @@
   list-style: none;
   flex-direction: column;
   padding: 0;
-  margin: 0;
+  margin-bottom: 35px;
 }
 
 #weather-info li {
@@ -42,11 +43,15 @@
   margin-bottom: 13px;
   align-items: center;
   width: 225px;
-  height: 60px;
+  height: 45px;
   background-color: #f4f4f4;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 #weather-info img {
@@ -66,19 +71,33 @@
   color: #666;
 }
 
+#weather-info:hover {
+  overflow-y: auto;
+}
+
 /* Scrollbar när användaren hovrar över väderprognosen */
 #weather-info::-webkit-scrollbar {
-  height: 8px;
+  width: 3px;
+  z-index: -2;
+  position: absolute;
 }
 
 #weather-info::-webkit-scrollbar-thumb {
   background-color: #555;
-  border-radius: 5px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
 }
 
 #weather-info::-webkit-scrollbar-track {
   background-color: #f0f0f0;
-  border-radius: 5px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
 }
 
 /* När API’t laddar data */
