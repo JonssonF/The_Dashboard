@@ -6,8 +6,20 @@ export async function GetWeather() {
   weatherElement.innerHTML = "Loading weather...";
 
   try {
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve(pos.coords),
+        (err) => reject(new Error("Could not get location"))
+      );
+    });
+
+    const lat = position.latitude;
+    const lon = position.longitude;
+
+    const detailedLocation = await getDetailedLocation(lat, lon);
+
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Stockholm&days=3`
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=3&aqi=yes&alerts=yes`
     );
 
     if (!response.ok) {
@@ -16,8 +28,10 @@ export async function GetWeather() {
     const data = await response.json();
     console.log(data);
 
+    const locationName = detailedLocation || data.location.name;
+    console.log(locationName);
     const forecast = data.forecast.forecastday;
-    let forecastHTML = "<ul>";
+    let forecastHTML = `<h3>${locationName}</h3><ul>`;
 
     forecast.forEach((day) => {
       const date = new Date(day.date);
@@ -43,5 +57,21 @@ export async function GetWeather() {
     weatherElement.classList.remove("loading");
     weatherElement.classList.add("error");
     weatherElement.innerHTML = "Could not load weather data.";
+  }
+}
+
+async function getDetailedLocation(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch location details");
+    }
+    const data = await response.json();
+    return data.display_name;
+  } catch (error) {
+    console.warn("Warning: Could not fetch detailed location.");
+    return null;
   }
 }
