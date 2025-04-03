@@ -20,8 +20,7 @@ This project is a school assignment where the goal is to create a personal dashb
 
 ### 🌤 Weather Display
 - Displays the current weather using data from an **open API**.
-- Uses the browser's **geolocation API** to determine the user's location.
-- **Extra Challenge**: Allow the user to manually set the location.
+- Uses the browser's **geolocation API** to determine the user's manually set the location.
 
 ### 📊 Custom API Section
 - This section can display any data from an **external API** (e.g., news, stock prices, etc.).
@@ -32,7 +31,7 @@ This project is a school assignment where the goal is to create a personal dashb
 
 ### 🖼 Random Background Image
 - Clicking a button fetches a **random image** from the **Unsplash API** and sets it as the background.
-- **Extra Challenge**: Allow users to specify a **search term** to find relevant images.
+
 
 ## 🔧 Technologies Used
 - **HTML**
