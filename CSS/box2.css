@@ -33,7 +33,7 @@
   list-style: none;
   flex-direction: column;
   padding: 0;
-  margin-bottom: 35px;
+  margin-bottom: 0px;
 }
 
 #weather-info li {

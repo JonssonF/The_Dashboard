@@ -32,7 +32,7 @@ export async function GetWeather() {
 
     console.log(locationName);
     const forecast = data.forecast.forecastday;
-    let forecastHTML = `<h2>${locationName}</h2><ul>`;
+    let forecastHTML = `<h3>${locationName}</h3><ul>`;
 
     forecast.forEach((day) => {
       const date = new Date(day.date);

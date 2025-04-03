@@ -1,7 +1,27 @@
 import { GetWeather } from "./JS/weather.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-  GetWeather(); // Runs the GetWeather function from weather.js
+document.addEventListener("DOMContentLoaded", async function () {
+  await GetWeather(); // Runs the GetWeather function from weather.js
+
+  /*-----------------LIFE LESSONS API----------------*/
+
+  const fetchLesson = async () => {
+    try {
+      const response = await fetch("https://api.adviceslip.com/advice");
+      const data = await response.json();
+      const lesson = data.slip.advice;
+
+      // Visa rådet på sidan
+      document.getElementById("lesson__Content").textContent = lesson;
+    } catch (error) {
+      console.error("Error fetching advice:", error);
+    }
+  };
+  document
+    .getElementById("lesson__Button")
+    .addEventListener("click", fetchLesson);
+
+  await fetchLesson();
 
   //Function for the clock in headerr----------------------------
   function clockUpdate() {
@@ -236,22 +256,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   loadNotes();
-
-  /*-----------------LIFE LESSONS API----------------*/
-
-  const fetchLesson = async () => {
-    try {
-      const response = await fetch("https://api.adviceslip.com/advice");
-      const data = await response.json();
-      const lesson = data.slip.advice;
-
-      // Visa rådet på sidan
-      document.getElementById("lesson__Content").textContent = lesson;
-    } catch (error) {
-      console.error("Error fetching advice:", error);
-    }
-  };
-  document
-    .getElementById("lesson__Button")
-    .addEventListener("click", fetchLesson);
 });
